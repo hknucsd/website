@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import hknLogo from '../media/logos/HKN-logo.svg';
+import hknLogo from '../media/logos/hkn-logo-white.png';
 
 function NavBar() {
   const location = useLocation();
   
   return (
-    <nav className="bg-white shadow-lg">
+    <nav className="bg-transparent">
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
@@ -21,28 +21,28 @@ function NavBar() {
             <Link
               to="/"
               className={`${
-                location.pathname === '/' ? 'text-blue-600' : 'text-gray-700'
-              } hover:text-blue-600`}
+                location.pathname === '/' ? '[color:#5F69A6]' : 'text-white'
+              } hover:text-white`}
             >
               About
             </Link>
             <Link
               to="/career-fair"
               className={`${
-                location.pathname === '/career-fair' ? 'text-blue-600' : 'text-gray-700'
-              } hover:text-blue-600`}
+                location.pathname === '/career-fair' ? '[color:#A3D7E5]' : 'text-white'
+              } hover:text-white`}
             >
               Honors Career Fair
             </Link>
             <Link
               to="/sponsor"
               className={`${
-                location.pathname === '/sponsor' ? 'text-blue-600' : 'text-gray-700'
-              } hover:text-blue-600`}
+                location.pathname === '/sponsor' ? '[color:#5F69A6]' : 'text-white'
+              } hover:text-white`}
             >
               Sponsor
             </Link>
-            <a href="#contact" className="text-gray-700 hover:text-blue-600">
+            <a href="#contact" className="text-white hover:text-white">
               Contact
             </a>
           </div>
