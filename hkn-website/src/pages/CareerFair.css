@@ -4,6 +4,17 @@
     --glow-small: drop-shadow(0 0 2px var(--glow-color)) drop-shadow(0 0 2px var(--glow-color));
     --glow-large: drop-shadow(0 0 3px var(--glow-color)) drop-shadow(0 0 3px var(--glow-color)) drop-shadow(0 0 6px var(--glow-color));
     --transition-transform: transform 0.2s ease;
+    --banner-animation-duration: 1.05s;
+    --banner-animation-delay: 0.21s;
+    --event-info-animation-duration: 0.84s; 
+    --event-date-delay: 1.05s;
+    --event-location-delay: 1.26s;
+    --rsvp-animation-duration: 0.56s;
+    --rsvp-animation-delay: 1.75s;
+    --typewriter-speed: 0.008s;
+    --logo-animation-duration: 1.2s;
+    --featured-logo-delay: 0.3s;
+    --sponsor-logo-delay: 0.6s;
 }
 
 html {
@@ -48,6 +59,123 @@ body {
     box-shadow: none !important;
 }
 
+/* Banner Animation Keyframes */
+@keyframes bannerFadeInForward {
+    0% {
+        opacity: 0;
+        transform: translateZ(-50px) scale(0.9);
+        filter: blur(2px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateZ(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+/* Event Info Slide Down Animation */
+@keyframes slideDownFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* RSVP Button Pop In Animation */
+@keyframes popIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+    70% {
+        transform: scale(1.1);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Typewriter Animation */
+@keyframes typewriter {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes blinkCursor {
+    from, to {
+        border-color: transparent;
+    }
+    50% {
+        border-color: var(--glow-color);
+    }
+}
+
+/* Sponsor Logo Fade In with Light Flash */
+@keyframes sponsorFadeInFlash {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+        filter: var(--glow-small) brightness(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.05);
+        filter: var(--glow-large) brightness(2) saturate(1.5);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+        filter: var(--glow-small) brightness(1);
+    }
+}
+
+/* Featured Sponsor Enhanced Flash */
+@keyframes featuredSponsorFlash {
+    0% {
+        opacity: 0;
+        transform: scale(0.7);
+        filter: var(--glow-large) brightness(1);
+    }
+    60% {
+        opacity: 0.9;
+        transform: scale(1.1);
+        filter: var(--glow-large) brightness(2.5) saturate(2) drop-shadow(0 0 20px var(--glow-color));
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+        filter: var(--glow-large) brightness(1);
+    }
+}
+
+/* Twinkling Idle Animations */
+@keyframes sponsorTwinkle {
+    0%, 100% {
+        filter: var(--glow-small) brightness(1);
+    }
+    50% {
+        filter: var(--glow-small) brightness(1.15) saturate(1.1);
+    }
+}
+
+@keyframes featuredTwinkle {
+    0%, 100% {
+        filter: var(--glow-large) brightness(1);
+    }
+    50% {
+        filter: var(--glow-large) brightness(1.175) saturate(1.2) drop-shadow(0 0 6px var(--glow-color));
+    }
+}
+
 /* Logo styles */
 .logo-container {
     display: flex;
@@ -78,11 +206,26 @@ body {
     padding: 0;
 }
 
+/* Add subtle twinkling to organization logos */
+.logo.idle {
+    animation: logoTwinkle 4s ease-in-out infinite;
+}
+
+@keyframes logoTwinkle {
+    0%, 100% {
+        filter: none;
+    }
+    50% {
+        filter: brightness(1.08) drop-shadow(0 0 3px rgba(163, 215, 229, 0.3));
+    }
+}
+
 /* Sponsor logos */
 .sponsor-logo {
     width: 100%;
     height: 120px;
     filter: var(--glow-small);
+    opacity: 0; /* Initially hidden */
 }
 
 /* Featured sponsor logo */
@@ -90,6 +233,29 @@ body {
     width: 300px;
     height: 180px;
     filter: var(--glow-large);
+    opacity: 0; /* Initially hidden */
+}
+
+/* Animation triggers */
+.sponsor-logo.animate {
+    animation: sponsorFadeInFlash var(--logo-animation-duration) ease-out var(--sponsor-logo-delay) forwards;
+}
+
+.featured-sponsor-logo.animate {
+    animation: featuredSponsorFlash var(--logo-animation-duration) ease-out var(--featured-logo-delay) forwards;
+}
+
+/* Idle twinkling after entrance animation */
+.sponsor-logo.animate.idle {
+    animation: 
+        sponsorFadeInFlash var(--logo-animation-duration) ease-out var(--sponsor-logo-delay) forwards,
+        sponsorTwinkle 3s ease-in-out infinite 2s; /* Start twinkling 2s after entrance */
+}
+
+.featured-sponsor-logo.animate.idle {
+    animation: 
+        featuredSponsorFlash var(--logo-animation-duration) ease-out var(--featured-logo-delay) forwards,
+        featuredTwinkle 2.5s ease-in-out infinite 1.5s; /* Start twinkling 1.5s after entrance */
 }
 
 .featured-sponsor-logo:hover {
@@ -105,7 +271,7 @@ body {
     width: 100%;
     padding: 0;  /* Removed padding since flexbox handles spacing */
     margin: 0 auto;
-    gap: 1rem;  /* Consistent gap between banner elements */
+    gap: 0.2rem;  /* Reduced gap between banner elements */
 }
 
 .banner-image {
@@ -115,13 +281,29 @@ body {
     object-fit: contain;
     display: block;
     margin: 0 auto;
+    
+    /* Banner Animation */
+    animation: bannerFadeInForward var(--banner-animation-duration) ease-out var(--banner-animation-delay) both;
+    transform-style: preserve-3d;
 }
 
 .event-info {
     font-size: max(28px, min(2vw, 4vh));
-    margin: 0.25em 0;
+    margin-top: 0.25em 0;
     color: var(--glow-color);
     text-align: center;
+    
+    /* Event Info Animation */
+    animation: slideDownFadeIn var(--event-info-animation-duration) ease-out both;
+}
+
+/* Staggered animation delays for date and location */
+#eventdate {
+    animation-delay: var(--event-date-delay);
+}
+
+#eventlocation {
+    animation-delay: var(--event-location-delay);
 }
 
 .rsvp-link {
@@ -130,6 +312,9 @@ body {
     align-items: center;
     flex: 1;  /* Take up all remaining space in the flexbox */
     margin: 0;  /* Remove margins since flexbox handles spacing */
+    
+    /* RSVP Button Animation */
+    animation: popIn var(--rsvp-animation-duration) ease-out var(--rsvp-animation-delay) both;
 }
 
 .section-header {
@@ -184,6 +369,34 @@ body {
     max-width: 800px;
     margin: 0 auto;
     padding: 0 2rem;
+    font-family: var(--primary-font);
+}
+
+/* Typewriter span for animated words */
+.about-text .typewriter-text {
+    border-right: 2px solid var(--glow-color);
+}
+
+/* Triggered when in view */
+.about-text.typing .typewriter-text {
+    animation: blinkCursor 0.5s infinite;
+}
+
+.about-text.typing-complete .typewriter-text {
+    border-right: none;
+}
+
+/* Triggered when in view */
+.about-text.typing {
+    animation: 
+        typewriter 3s steps(200) 0.5s forwards,
+        blinkCursor 0.8s infinite;
+}
+
+.about-text.typing-complete {
+    width: 100%;
+    border-right: none;
+    white-space: normal;
 }
 
 /* Sponsor section */

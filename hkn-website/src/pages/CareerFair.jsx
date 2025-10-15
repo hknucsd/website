@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import NavBar from '../components/NavBar';
 import './CareerFair.css';
 import hcfBanner from '../media/images/hcf/hcf-banner-backgroundless.png';
@@ -12,6 +12,120 @@ import interlinkLogo from '../media/images/hcf/interlink-logo.webp';
 import arkusLogo from '../media/images/hcf/arkus-logo.webp';
 
 function CareerFair() {
+  useEffect(() => {
+    // Typewriter effect for about text on scroll
+    const aboutText = document.querySelector('.about-text');
+    
+    if (!aboutText) return;
+    
+    // Store original text and create flag to prevent re-triggering
+    const originalText = aboutText.textContent;
+    let hasTriggered = false;
+    
+    // Create intersection observer for about text
+    const aboutObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !hasTriggered) {
+          hasTriggered = true; // Set flag to prevent re-triggering
+          startTypewriter(entry.target, originalText);
+          aboutObserver.unobserve(entry.target); // Stop observing after first trigger
+        }
+      });
+    }, {
+      threshold: 0.3 // Trigger when 30% of element is visible
+    });
+    
+    // Start observing the about text
+    aboutObserver.observe(aboutText);
+    
+    // Organization logos twinkling (starts immediately)
+    const orgLogos = document.querySelectorAll('.logo');
+    orgLogos.forEach((logo, index) => {
+      setTimeout(() => {
+        logo.classList.add('idle');
+      }, 500 + (index * 200)); // Staggered start for organization logos
+    });
+    
+    // Sponsor logos animation
+    const sponsorLogos = document.querySelectorAll('.sponsor-logo');
+    const featuredLogo = document.querySelector('.featured-sponsor-logo');
+    let sponsorAnimated = false;
+    
+    const sponsorObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !sponsorAnimated) {
+          sponsorAnimated = true;
+          
+          // Animate featured sponsor first
+          if (featuredLogo) {
+            featuredLogo.classList.add('animate');
+            // Add idle class after entrance animation completes
+            setTimeout(() => {
+              featuredLogo.classList.add('idle');
+            }, 1500); // After featured logo entrance completes
+          }
+          
+          // Animate regular sponsors with staggered delay
+          sponsorLogos.forEach((logo, index) => {
+            setTimeout(() => {
+              logo.classList.add('animate');
+              // Add idle class after each logo's entrance completes
+              setTimeout(() => {
+                logo.classList.add('idle');
+              }, 1200); // After individual logo entrance completes
+            }, 200 + (index * 150)); // 200ms base delay + 150ms per logo
+          });
+          
+          sponsorObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.2
+    });
+    
+    // Observe sponsors section
+    const sponsorsSection = document.querySelector('#sponsors');
+    if (sponsorsSection) {
+      sponsorObserver.observe(sponsorsSection);
+    }
+    
+    function startTypewriter(element, text) {
+      // Split text into words and identify the last few impactful words
+      const words = text.split(' ');
+      const wordsToType = 6; // Number of words to animate
+      const staticWords = words.slice(0, -wordsToType).join(' ');
+      const animatedWords = words.slice(-wordsToType).join(' ');
+      
+      // Set up the static text immediately
+      element.innerHTML = staticWords + ' <span class="typewriter-text"></span>';
+      const typewriterSpan = element.querySelector('.typewriter-text');
+      
+      element.classList.add('typing');
+      
+      // Type out only the last few words character by character
+      let i = 0;
+      const typeInterval = setInterval(() => {
+        if (i < animatedWords.length) {
+          typewriterSpan.textContent += animatedWords.charAt(i);
+          i++;
+        } else {
+          // Animation complete
+          clearInterval(typeInterval);
+          element.classList.remove('typing');
+          element.classList.add('typing-complete');
+          // Replace with normal text
+          element.textContent = text;
+        }
+      }, 10); // 10ms per character for very fast typing
+    }
+    
+    // Cleanup function
+    return () => {
+      aboutObserver.disconnect();
+      sponsorObserver.disconnect();
+    };
+  }, []);
+
   return (
     <div className="career-fair-container">
       <div className="transparent-nav">
