@@ -1,17 +1,16 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import whiteHknLogo from '../media/logos/hkn-logo-white.png';
-import blackHknLogo from '../media/logos/hkn-logo-black.svg';
 
 function NavBar() {
   const location = useLocation();
   const isCareerFairPage = location.pathname === '/career-fair';
-  const logoSrc = isCareerFairPage ? whiteHknLogo : blackHknLogo;
-  const textColorClass = isCareerFairPage ? 'text-white' : 'text-black';
+  const logoSrc = isCareerFairPage ? whiteHknLogo : whiteHknLogo;
+  const textColorClass = isCareerFairPage ? 'text-white' : 'text-white';
   const hoverColorClass = isCareerFairPage ? 'hover:text-[#A3D7E5]' : 'hover:text-[#5F69A6]';
   
   return (
-    <nav className={`bg-transparent ${isCareerFairPage ? '' : 'shadow-md bg-white bg-opacity-90'}`}>
+    <nav className={`bg-transparent ${isCareerFairPage}`}>
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
