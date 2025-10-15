@@ -2,8 +2,7 @@ import React from 'react';
 
 import Footer from './components/Footer';
 import NavBar from './components/NavBar';
-import Statistic from './components/Statistic';
-
+import StatisticsSection from './components/StatisticsComponent';
 
 import './Home.css';
 
@@ -44,38 +43,11 @@ function Home() {
           <p className="text-lg text-blue-200/90">
             Eta Kappa Nu (HKN) is the premier honor society for electrical and computer engineering students.
             We recognize and support excellence in engineering education through leadership, scholarship, and service.
-          </p>
+          </p>  
         </section>
 
 
-        <section className="statistics-container">
-
-          <Statistic 
-            label="Active Members" 
-            end={500} 
-          />
-
-          <div className="vertical-divider"></div>
-
-          <Statistic 
-            label="Hard Hack Attendees" 
-            end={200} 
-          />
-
-          <div className="vertical-divider"></div>
-
-          <Statistic 
-            label="Projects Completed" 
-            end={75} 
-          />
-
-          <div className="vertical-divider"></div>
-
-          <Statistic 
-            label="Another Stat" 
-            end={85} 
-          />
-        </section>
+        <StatisticsSection />
 
 
       </main>
