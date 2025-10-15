@@ -1,5 +1,10 @@
 import React from 'react';
+
+import Footer from './components/Footer';
 import NavBar from './components/NavBar';
+import Statistic from './components/Statistic';
+
+
 import './Home.css';
 
 function Home() {
@@ -33,20 +38,54 @@ function Home() {
       </header>
 
       <main className="container mx-auto px-6 md:px-10 py-16">
+
         <section className="max-w-4xl text-center mx-auto">
-          <h2 className="text-3xl font-bold text-blue-400 mb-6">About Us</h2>
+          <h2 className="text-3xl font-bold textg-blue-400 mb-6">About Us</h2>
           <p className="text-lg text-blue-200/90">
             Eta Kappa Nu (HKN) is the premier honor society for electrical and computer engineering students.
             We recognize and support excellence in engineering education through leadership, scholarship, and service.
           </p>
         </section>
+
+
+        <section className="statistics-container">
+
+          <Statistic 
+            label="Active Members" 
+            end={500} 
+          />
+
+          <div className="vertical-divider"></div>
+
+          <Statistic 
+            label="Hard Hack Attendees" 
+            end={200} 
+          />
+
+          <div className="vertical-divider"></div>
+
+          <Statistic 
+            label="Projects Completed" 
+            end={75} 
+          />
+
+          <div className="vertical-divider"></div>
+
+          <Statistic 
+            label="Another Stat" 
+            end={85} 
+          />
+        </section>
+
+
       </main>
 
+      
+
+
+
       <footer id="contact" className="bg-[#0A2540] text-blue-100 py-10">
-        <div className="container mx-auto px-6 md:px-10">
-          <h2 className="text-2xl font-bold mb-4">Contact Us</h2>
-          <p className="text-blue-200/80">Add contact information here.</p>
-        </div>
+        <Footer />
       </footer>
     </div>
   );
