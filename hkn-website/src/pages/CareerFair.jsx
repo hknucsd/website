@@ -88,6 +88,34 @@ function CareerFair() {
     if (sponsorsSection) {
       sponsorObserver.observe(sponsorsSection);
     }
+
+    // FAQ cards animation
+    const faqObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const cards = document.querySelectorAll('.faq-card');
+          
+          // Animate FAQ cards with staggered delay
+          cards.forEach((card, index) => {
+            setTimeout(() => {
+              card.classList.add('animate');
+            }, index * 150); // 150ms delay between each card
+          });
+          
+          // Unobserve after animation triggers
+          faqObserver.disconnect();
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px' // Trigger slightly before element fully enters viewport
+    });
+    
+    // Observe FAQ section
+    const faqSection = document.querySelector('#faq-page');
+    if (faqSection) {
+      faqObserver.observe(faqSection);
+    }
     
     function startTypewriter(element, text) {
       // Split text into words and identify the last few impactful words
@@ -286,30 +314,6 @@ function CareerFair() {
               </div>
               <div className="faq-card-back">
                 <p>Make sure to bring multiple hard copies of your resume to hand out to company representatives.</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="faq-card" onClick={(e) => e.currentTarget.classList.toggle('is-flipped')}>
-            <div className="faq-card-inner">
-              <div className="faq-card-front">
-                <h3>Where is it?</h3>
-                <span className="faq-click-hint">Click to flip</span>
-              </div>
-              <div className="faq-card-back">
-                <p>Qualcomm Room, first floor of Jacobs Hall at UC San Diego</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="faq-card" onClick={(e) => e.currentTarget.classList.toggle('is-flipped')}>
-            <div className="faq-card-inner">
-              <div className="faq-card-front">
-                <h3>When is it?</h3>
-                <span className="faq-click-hint">Click to flip</span>
-              </div>
-              <div className="faq-card-back">
-                <p>Monday, November 10th, 2025 1-5pm</p>
               </div>
             </div>
           </div>
