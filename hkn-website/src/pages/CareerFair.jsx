@@ -132,7 +132,6 @@ function CareerFair() {
       <div className="transparent-nav">
         <NavBar />
       </div>
-      <button id="scrollTop">^</button>
       
       <div id="cover-page" className="content-section">
         <div id="cover-flex">
