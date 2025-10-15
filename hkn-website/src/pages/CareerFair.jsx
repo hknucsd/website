@@ -46,47 +46,21 @@ function CareerFair() {
       }, 500 + (index * 200)); // Staggered start for organization logos
     });
     
-    // Sponsor logos animation
+    // Sponsor logos - just add idle twinkling immediately 
     const sponsorLogos = document.querySelectorAll('.sponsor-logo');
     const featuredLogo = document.querySelector('.featured-sponsor-logo');
-    let sponsorAnimated = false;
     
-    const sponsorObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && !sponsorAnimated) {
-          sponsorAnimated = true;
-          
-          // Animate featured sponsor first
-          if (featuredLogo) {
-            featuredLogo.classList.add('animate');
-            // Add idle class after entrance animation completes
-            setTimeout(() => {
-              featuredLogo.classList.add('idle');
-            }, 1500); // After featured logo entrance completes
-          }
-          
-          // Animate regular sponsors with staggered delay
-          sponsorLogos.forEach((logo, index) => {
-            setTimeout(() => {
-              logo.classList.add('animate');
-              // Add idle class after each logo's entrance completes
-              setTimeout(() => {
-                logo.classList.add('idle');
-              }, 1200); // After individual logo entrance completes
-            }, 200 + (index * 150)); // 200ms base delay + 150ms per logo
-          });
-          
-          sponsorObserver.unobserve(entry.target);
-        }
-      });
-    }, {
-      threshold: 0.2
+    // Add idle twinkling to all sponsor logos immediately
+    sponsorLogos.forEach((logo, index) => {
+      setTimeout(() => {
+        logo.classList.add('idle');
+      }, 500 + (index * 100)); // Small staggered delay for twinkling start
     });
     
-    // Observe sponsors section
-    const sponsorsSection = document.querySelector('#sponsors');
-    if (sponsorsSection) {
-      sponsorObserver.observe(sponsorsSection);
+    if (featuredLogo) {
+      setTimeout(() => {
+        featuredLogo.classList.add('idle');
+      }, 300); // Featured logo starts twinkling slightly earlier
     }
 
     // FAQ cards animation
@@ -150,7 +124,6 @@ function CareerFair() {
     // Cleanup function
     return () => {
       aboutObserver.disconnect();
-      sponsorObserver.disconnect();
     };
   }, []);
 

@@ -121,43 +121,7 @@ body {
     }
 }
 
-/* Sponsor Logo Fade In with Light Flash */
-@keyframes sponsorFadeInFlash {
-    0% {
-        opacity: 0;
-        transform: scale(0.8);
-        filter: var(--glow-small) brightness(1);
-    }
-    50% {
-        opacity: 0.8;
-        transform: scale(1.05);
-        filter: var(--glow-large) brightness(2) saturate(1.5);
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1);
-        filter: var(--glow-small) brightness(1);
-    }
-}
-
-/* Featured Sponsor Enhanced Flash */
-@keyframes featuredSponsorFlash {
-    0% {
-        opacity: 0;
-        transform: scale(0.7);
-        filter: var(--glow-large) brightness(1);
-    }
-    60% {
-        opacity: 0.9;
-        transform: scale(1.1);
-        filter: var(--glow-large) brightness(2.5) saturate(2) drop-shadow(0 0 20px var(--glow-color));
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1);
-        filter: var(--glow-large) brightness(1);
-    }
-}
+/* Sponsor Logo Twinkling Animations */
 
 /* Twinkling Idle Animations */
 @keyframes sponsorTwinkle {
@@ -236,10 +200,10 @@ body {
 
 /* Sponsor logos */
 .sponsor-logo {
-    width: 100%;
+    width: 200px;
     height: 120px;
     filter: var(--glow-small);
-    opacity: 0; /* Initially hidden */
+    opacity: 1; /* Visible by default */
 }
 
 /* Featured sponsor logo */
@@ -247,29 +211,16 @@ body {
     width: 300px;
     height: 180px;
     filter: var(--glow-large);
-    opacity: 0; /* Initially hidden */
+    opacity: 1; /* Visible by default */
 }
 
-/* Animation triggers */
-.sponsor-logo.animate {
-    animation: sponsorFadeInFlash var(--logo-animation-duration) ease-out var(--sponsor-logo-delay) forwards;
+/* Animation triggers - just idle twinkling */
+.sponsor-logo.idle {
+    animation: sponsorTwinkle 3s ease-in-out infinite;
 }
 
-.featured-sponsor-logo.animate {
-    animation: featuredSponsorFlash var(--logo-animation-duration) ease-out var(--featured-logo-delay) forwards;
-}
-
-/* Idle twinkling after entrance animation */
-.sponsor-logo.animate.idle {
-    animation: 
-        sponsorFadeInFlash var(--logo-animation-duration) ease-out var(--sponsor-logo-delay) forwards,
-        sponsorTwinkle 3s ease-in-out infinite 2s; /* Start twinkling 2s after entrance */
-}
-
-.featured-sponsor-logo.animate.idle {
-    animation: 
-        featuredSponsorFlash var(--logo-animation-duration) ease-out var(--featured-logo-delay) forwards,
-        featuredTwinkle 2.5s ease-in-out infinite 1.5s; /* Start twinkling 1.5s after entrance */
+.featured-sponsor-logo.idle {
+    animation: featuredTwinkle 2.5s ease-in-out infinite;
 }
 
 .featured-sponsor-logo:hover {
@@ -384,6 +335,7 @@ body {
     margin: 0 auto;
     padding: 0 2rem;
     font-family: var(--primary-font);
+    font-size: max(15px, min(1.35vw, 2.6vh));
 }
 
 /* Typewriter span for animated words */
