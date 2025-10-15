@@ -1,6 +1,22 @@
+:root {
+    --primary-font: "Book Antiqua";
+    --glow-color: #A3D7E5;
+    --glow-small: drop-shadow(0 0 2px var(--glow-color)) drop-shadow(0 0 2px var(--glow-color));
+    --glow-large: drop-shadow(0 0 3px var(--glow-color)) drop-shadow(0 0 3px var(--glow-color)) drop-shadow(0 0 6px var(--glow-color));
+    --transition-transform: transform 0.2s ease;
+}
+
 html {
     scroll-behavior: smooth;
     overflow-x: hidden;
+}
+
+body {
+    overflow-x: hidden;
+    margin: 0;
+    min-height: max(300px,100%);
+    min-width: 300px;
+    font-family: var(--primary-font);
 }
 
 .career-fair-container {
@@ -11,7 +27,7 @@ html {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    font-family: "Book Antiqua";
+    font-family: var(--primary-font);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -44,25 +60,40 @@ html {
     padding: 0;
 }
 
-.logo {
-    width: 120px; 
-    height: 120px;
+/* Shared logo styling */
+.logo-base {
     object-fit: contain;
-    transition: transform 0.2s ease;
-    margin: 0; /* Remove any margin */
-    padding: 0; /* Remove any padding */
+    transition: var(--transition-transform);
 }
 
-.logo:hover {
+.logo-base:hover {
     transform: scale(1.05);
 }
 
-body {
-    overflow-x: hidden;
+/* Organization logos */
+.logo {
+    width: 120px;
+    height: 120px;
     margin: 0;
-    min-height: max(300px,100%);
-    min-width: 300px;
-    font-family: "Book Antiqua";
+    padding: 0;
+}
+
+/* Sponsor logos */
+.sponsor-logo {
+    width: 100%;
+    height: 120px;
+    filter: var(--glow-small);
+}
+
+/* Featured sponsor logo */
+.featured-sponsor-logo {
+    width: 300px;
+    height: 180px;
+    filter: var(--glow-large);
+}
+
+.featured-sponsor-logo:hover {
+    transform: scale(1.08);
 }
 
 /* Banner Section */
@@ -88,8 +119,8 @@ body {
 
 .event-info {
     font-size: max(28px, min(2vw, 4vh));
-    margin: 0.25em 0;  /* Reduced margin to bring text closer */
-    color: #A3D7E5;
+    margin: 0.25em 0;
+    color: var(--glow-color);
     text-align: center;
 }
 
@@ -114,50 +145,37 @@ body {
     margin: 0 auto 2em;
 }
 
-/* Content sections */
-#cover-page {
+/* Shared base styling for all content sections */
+.content-section {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: 1rem 0;
     max-width: 1200px;
     margin: 0 auto;
 }
 
-/* Boxed sections for better formatting */
-#about-page {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 2rem;
-    max-width: 1200px;
-    margin: 0.5rem auto 2rem auto;  /* Reduced top margin to minimize gap below logos */
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+/* Cover page - no box styling */
+#cover-page {
+    padding: 1rem 0;
 }
 
+/* Boxed sections with transparent styling */
+.boxed-section {
+    padding: 2rem;
+    margin: 2rem auto;
+}
+
+/* About section - special top margin */
+#about-page {
+    margin-top: 5rem;
+}
+
+/* Sponsors and FAQ - no top padding */
 #sponsors,
 #faq-page {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 0 2rem 2rem 2rem;  /* Remove top padding, keep other padding */
-    max-width: 1200px;
-    margin: 2rem auto;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    padding-top: 0;
 }
 
 /* About section text */
@@ -182,56 +200,49 @@ body {
 .featured-sponsor {
     display: flex;
     justify-content: center;
-    margin: 0.5rem auto;  /* Reduced from 2rem to 1rem */
+    margin: 0.5rem auto;
     width: 100%;
-}
-
-.featured-sponsor-logo {
-    width: 300px;  /* Much larger than regular sponsors */
-    height: 180px; /* Taller than regular sponsors */
-    object-fit: contain;
-    transition: transform 0.2s ease;
-    filter: drop-shadow(0 0 3px #A3D7E5) drop-shadow(0 0 3px #A3D7E5) drop-shadow(0 0 6px #A3D7E5);
-    /* Enhanced glow effect for featured sponsor */
-}
-
-.featured-sponsor-logo:hover {
-    transform: scale(1.08);
 }
 
 .sponsor-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);  /* Changed to 3 columns for remaining sponsors */
+    grid-template-columns: repeat(3, 1fr); 
     gap: 2rem;
     width: 100%;
     max-width: 800px;
-    margin: 0.5rem auto;  /* Reduced from 2rem to 1rem */
+    margin: 0.5rem auto; 
     padding: 0 1rem;
 }
 
+/* Responsive design */
 @media (max-width: 768px) {
     .sponsor-grid {
-        grid-template-columns: repeat(2, 1fr);  /* 2 columns on mobile */
+        grid-template-columns: repeat(2, 1fr);
     }
     
     .featured-sponsor-logo {
-        width: 250px;  /* Slightly smaller on mobile but still prominent */
+        width: 250px;
         height: 150px;
     }
     
-    /* Responsive adjustments for boxed sections */
-    #about-page,
-    #sponsors,
-    #faq-page {
+    .boxed-section {
         margin: 1rem;
         padding: 1.5rem;
-        border-radius: 10px;
+        /* Removed border-radius for transparent design */
+    }
+    
+    #cover-page {
+        padding-top: max(32px, 12vh);
+    }
+    
+    .banner-container {
+        padding-top: 2rem;
     }
 }
 
 @media (max-width: 480px) {
     .sponsor-grid {
-        grid-template-columns: 1fr;  /* Single column on very small screens */
+        grid-template-columns: 1fr;
     }
     
     .featured-sponsor-logo {
@@ -239,32 +250,13 @@ body {
         height: 120px;
     }
     
-    /* Further responsive adjustments for very small screens */
-    #about-page,
-    #sponsors,
-    #faq-page {
+    .boxed-section {
         margin: 0.5rem;
         padding: 1rem;
-        border-radius: 8px;
     }
 }
 
-.sponsor-logo {
-    width: 100%;
-    height: 120px;
-    object-fit: contain;
-    transition: transform 0.2s ease;
-    filter: drop-shadow(0 0 2px #A3D7E5) drop-shadow(0 0 2px #A3D7E5);
-}
-
-.sponsor-logo:hover {
-    transform: scale(1.05);
-}
-
-/* Remove the sponsor-row class as we're using CSS Grid */
-.sponsor-row {
-    display: contents;
-}
+/* Remove unused sponsor-row class */
 
 /* FAQ section */
 .faq-grid {
@@ -511,7 +503,7 @@ background-color: #555; /* Add a dark-grey background on hover */
 	position: relative;
 	
 	color: #ffffff;
-	font-family: "Book Antiqua";
+	font-family: var(--primary-font);
 	font-style: normal;
 	font-weight: 700;
 	text-align: center;
@@ -570,18 +562,17 @@ background-color: #555; /* Add a dark-grey background on hover */
 }
 
 .flexpad {
-	flex: 1 1 auto;
+	flex: 1;
 }
 
 .center {
 	margin: auto;
-	text-align: center;
 }
 
 .big-button {
 	white-space: normal;
 	background-color: rgb(126, 196, 219);
-	font-family: "Book Antiqua";
+	font-family: var(--primary-font);
 	color: black;
 	border: none;
 	line-height: 0;
@@ -626,7 +617,7 @@ background-color: #555; /* Add a dark-grey background on hover */
 
 dropdown-box {
 	display: block;
-	font-family: "Book Antiqua";
+	font-family: var(--primary-font);
 	font-weight: 100;
 	min-height: 4em;
 	padding: 0px 0px 2em 0px;
@@ -659,7 +650,7 @@ ul {
 }
 
 li {
-	font-family: Book Antiqua;
+	font-family: var(--primary-font);
 }
 
 table {

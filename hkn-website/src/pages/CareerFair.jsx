@@ -19,7 +19,7 @@ function CareerFair() {
       </div>
       <button id="scrollTop">^</button>
       
-      <div id="cover-page">
+      <div id="cover-page" className="content-section">
         <div id="cover-flex">
           <div>
             <div className="banner-container">
@@ -50,7 +50,7 @@ function CareerFair() {
         </a>
       </div>
 
-      <div id="about-page">
+      <div id="about-page" className="content-section boxed-section">
         <p className="section-header">About</p>
         <hr className="section-divider" />
         <p className="about-text">
@@ -59,24 +59,24 @@ function CareerFair() {
         <div className="logo-container">
           <img
             src={scholarsLogo}
-            className="logo"
+            className="logo logo-base"
             alt="Scholars Logo"
           />
           <img
             src={hknLogo}
-            className="logo"
+            className="logo logo-base"
             alt="HKN Logo"
           />
           <img
             src={tbpLogo}
-            className="logo"
+            className="logo logo-base"
             alt="TBP Logo"
           />
         </div>
       </div>
 
       {/* Sponsors Section */}
-      <div id="sponsors">
+      <div id="sponsors" className="content-section boxed-section">
         <div className="sponsor-section">
           <p className="section-header">Sponsors</p>
           <hr className="section-divider" />
@@ -85,7 +85,7 @@ function CareerFair() {
           <div className="featured-sponsor">
             <img
               src={viasatLogo}
-              className="featured-sponsor-logo"
+              className="featured-sponsor-logo logo-base"
               alt="Viasat Logo"
             />
           </div>
@@ -94,17 +94,17 @@ function CareerFair() {
           <div className="sponsor-grid">
             <img
               src={llnlLogo}
-              className="sponsor-logo"
+              className="sponsor-logo logo-base"
               alt="Lawrence Livermore National Laboratory Logo"
             />
             <img
               src={interlinkLogo}
-              className="sponsor-logo"
+              className="sponsor-logo logo-base"
               alt="Interlink Logo"
             />
             <img
               src={arkusLogo}
-              className="sponsor-logo"
+              className="sponsor-logo logo-base"
               alt="Arkus Logo"
             />
           </div>
@@ -112,7 +112,7 @@ function CareerFair() {
       </div>
 
       {/* FAQ Section */}
-      <div id="faq-page">
+      <div id="faq-page" className="content-section boxed-section">
         <p className="section-header">FAQ</p>
         <hr className="section-divider" />
         <div className="faq-grid">
