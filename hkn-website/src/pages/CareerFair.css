@@ -38,13 +38,14 @@ html {
     justify-content: center;
     align-items: center;
     gap: 1rem;  /* Added small gap (16px) between logos */
-    margin: 2rem auto;
+    margin-top: 2rem;  /* Only top margin, no bottom margin at all */
+    margin-bottom: 0;
     width: 100%;
     padding: 0;
 }
 
 .logo {
-    width: 120px;  /* Made logos slightly smaller to fit better together */
+    width: 120px; 
     height: 120px;
     object-fit: contain;
     transition: transform 0.2s ease;
@@ -114,8 +115,34 @@ body {
 }
 
 /* Content sections */
-#cover-page,
-#about-page,
+#cover-page {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1rem 0;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Boxed sections for better formatting */
+#about-page {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0.5rem auto 2rem auto;  /* Reduced top margin to minimize gap below logos */
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
 #sponsors,
 #faq-page {
     width: 100%;
@@ -123,9 +150,14 @@ body {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: 2rem 0;
+    padding: 0 2rem 2rem 2rem;  /* Remove top padding, keep other padding */
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 2rem auto;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
 /* About section text */
@@ -146,14 +178,75 @@ body {
     align-items: center;
 }
 
+/* Featured Sponsor Section */
+.featured-sponsor {
+    display: flex;
+    justify-content: center;
+    margin: 0.5rem auto;  /* Reduced from 2rem to 1rem */
+    width: 100%;
+}
+
+.featured-sponsor-logo {
+    width: 300px;  /* Much larger than regular sponsors */
+    height: 180px; /* Taller than regular sponsors */
+    object-fit: contain;
+    transition: transform 0.2s ease;
+    filter: drop-shadow(0 0 3px #A3D7E5) drop-shadow(0 0 3px #A3D7E5) drop-shadow(0 0 6px #A3D7E5);
+    /* Enhanced glow effect for featured sponsor */
+}
+
+.featured-sponsor-logo:hover {
+    transform: scale(1.08);
+}
+
 .sponsor-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);  /* Changed to 3 columns for remaining sponsors */
     gap: 2rem;
     width: 100%;
     max-width: 800px;
-    margin: 2rem auto;
+    margin: 0.5rem auto;  /* Reduced from 2rem to 1rem */
     padding: 0 1rem;
+}
+
+@media (max-width: 768px) {
+    .sponsor-grid {
+        grid-template-columns: repeat(2, 1fr);  /* 2 columns on mobile */
+    }
+    
+    .featured-sponsor-logo {
+        width: 250px;  /* Slightly smaller on mobile but still prominent */
+        height: 150px;
+    }
+    
+    /* Responsive adjustments for boxed sections */
+    #about-page,
+    #sponsors,
+    #faq-page {
+        margin: 1rem;
+        padding: 1.5rem;
+        border-radius: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sponsor-grid {
+        grid-template-columns: 1fr;  /* Single column on very small screens */
+    }
+    
+    .featured-sponsor-logo {
+        width: 200px;
+        height: 120px;
+    }
+    
+    /* Further responsive adjustments for very small screens */
+    #about-page,
+    #sponsors,
+    #faq-page {
+        margin: 0.5rem;
+        padding: 1rem;
+        border-radius: 8px;
+    }
 }
 
 .sponsor-logo {
@@ -430,9 +523,6 @@ background-color: #555; /* Add a dark-grey background on hover */
 #dropdown-menu-bar p:hover {
 	text-decoration: underline;
 	cursor: pointer;
-}
-
-#dropdown-menu-bar-items {
 }
 
 .background-element {

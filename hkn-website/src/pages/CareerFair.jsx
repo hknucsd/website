@@ -80,16 +80,22 @@ function CareerFair() {
         <div className="sponsor-section">
           <p className="section-header">Sponsors</p>
           <hr className="section-divider" />
+          
+          {/* Featured Money Sponsor */}
+          <div className="featured-sponsor">
+            <img
+              src={viasatLogo}
+              className="featured-sponsor-logo"
+              alt="Viasat Logo"
+            />
+          </div>
+          
+          {/* Other Sponsors */}
           <div className="sponsor-grid">
             <img
               src={llnlLogo}
               className="sponsor-logo"
               alt="Lawrence Livermore National Laboratory Logo"
-            />
-            <img
-              src={viasatLogo}
-              className="sponsor-logo"
-              alt="Viasat Logo"
             />
             <img
               src={interlinkLogo}
