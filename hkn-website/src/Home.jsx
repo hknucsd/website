@@ -40,6 +40,35 @@ function Home() {
             We recognize and support excellence in engineering education through leadership, scholarship, and service.
           </p>
         </section>
+
+        <section className="max-w-6xl mx-auto mt-16">
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <h3 className="text-2xl font-bold text-blue-400 mb-4">Professional</h3>
+              <div className="gradient-bar mx-auto mb-4"></div>
+              <p className="text-blue-200/90">
+                HKN’s professional workshops help you level up your career through engaging, hands-on events like professor talks, DEAPTHS seminars, career fairs, networking events, and mock interview workshops. Learn how to stand out with your resume, interview with confidence, and connect directly with industry professionals and researchers who share real-world insights to help you reach your goals.
+              </p>
+            </div>
+            
+            <div className="text-center">
+              <h3 className="text-2xl font-bold text-blue-400 mb-4">Social</h3>
+              <div className="gradient-bar mx-auto mb-4"></div>
+              <p className="text-blue-200/90">
+                HKN socials bring engineers together to relax, connect, and have fun. From ice skating and boba socials to trivia nights, these events are the perfect mix of friendship and networking. Whether you’re meeting new people or unwinding after a long week, HKN socials create lasting memories and genuine connections with peers who share your passion for both work and play.
+              </p>
+            </div>
+            
+            <div className="text-center">
+              <h3 className="text-2xl font-bold text-blue-400 mb-4">Technical</h3>
+              <div className="gradient-bar mx-auto mb-4"></div>
+              <p className="text-blue-200/90">
+                HKN Technical Events offer hands-on workshops that teach you new skills from the ground up with no prior experience needed. Whether you’re curious about computer vision, health sensors, or 3D printing, our events are open to all majors and designed to help you explore new engineering fields. Learn practical skills, build projects, and gain real experience in a supportive environment where curiosity meets innovation.
+              </p>
+            </div>
+          </div>
+        </section>
+
       </main>
 
       <footer id="contact" className="bg-[#0A2540] text-blue-100 py-10">
