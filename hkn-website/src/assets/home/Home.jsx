@@ -1,6 +1,8 @@
 import React from 'react';
-import NavBar from './components/NavBar';
+import NavBar from '../../components/NavBar';
 import './Home.css';
+import Slideshow from './slideshow/Slideshow';
+import Carousel from './carousel/Carousel';
 
 function Home() {
   return (
@@ -34,11 +36,24 @@ function Home() {
 
       <main className="container mx-auto px-6 md:px-10 py-16">
         <section className="max-w-4xl text-center mx-auto">
-          <h2 className="text-3xl font-bold text-blue-400 mb-6">About Us</h2>
+          <h2 className="text-3xl font-bold text-blue-400 mb-6">ABOUT US</h2>
           <p className="text-lg text-blue-200/90">
             Eta Kappa Nu (HKN) is the premier honor society for electrical and computer engineering students.
             We recognize and support excellence in engineering education through leadership, scholarship, and service.
           </p>
+        </section>
+      </main>
+
+      <main className="container mx-auto px-6 md:px-10 py-16">
+        <section className="max-w-4xl text-center mx-auto">
+          <h2 className="text-3xl font-bold text-blue-400 mb-6">WHERE WE ARE</h2>
+          <Slideshow />
+        </section>
+      </main>
+
+      <main className="container mx-auto px-6 md:px-10 py-16">
+        <section className="max-w-4xl text-center mx-auto">
+          <Carousel />
         </section>
       </main>
 
@@ -49,6 +64,8 @@ function Home() {
         </div>
       </footer>
     </div>
+
+
   );
 }
 
