@@ -1,10 +1,11 @@
 import React from 'react';
+import './Home.css';
 
 import Footer from './components/Footer';
 import NavBar from './components/NavBar';
-import StatisticsSection from './components/StatisticsComponent';
 
-import './Home.css';
+import CarouselSection from './components/CarouselComponent';
+import StatisticsSection from './components/StatisticsComponent';
 
 function Home() {
   return (
@@ -46,8 +47,8 @@ function Home() {
           </p>  
         </section>
 
-
         <StatisticsSection />
+        <CarouselSection />
 
 
       </main>
