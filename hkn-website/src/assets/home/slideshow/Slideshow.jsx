@@ -35,6 +35,12 @@ const Slideshow = () => {
       subheading: 'Class 2',
       description: 'Name 2',
     },
+    {
+      image: '/src/media/images/members/image3.png',
+      heading: 'Company Name 3',
+      subheading: 'Class 3',
+      description: 'Name 3',
+    }
   ];
 
   const settings = {
